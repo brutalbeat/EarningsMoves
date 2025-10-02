@@ -1,5 +1,5 @@
 # this file fetches earnings dates, prices, and computes realized moves around past earnings events.
-
+# checking emil
 import pandas as pd
 import yfinance as yf
 
