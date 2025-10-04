@@ -8,7 +8,7 @@ from plots import histogramRealized, timelineMoves
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("ticker")
-    ap.add_argument("--events", type, default=12)
+    ap.add_argument("--events", type=int, default=12)
     args = ap.parse_args()
     
     edates = getEarningsDates(args.ticker, args.events)

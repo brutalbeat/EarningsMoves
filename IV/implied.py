@@ -31,10 +31,10 @@ def currentImpliedMove(symbol, earningsDate):
     T = daysTilExpiry/365.0
     impliedMovePct = atmIV*math.sqrt(T)
     
-    return{
-        "expiry:": expiry.date(),
-        "spot:" : spotPrice,
-        "atmIV:" : atmIV,
-        "impliedMovePct:" : impliedMovePct
+    return {
+        "expiry": expiry.date(),
+        "spot": spotPrice,
+        "atmIV": atmIV,
+        "impliedMovePct": impliedMovePct,
     }
     
