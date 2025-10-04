@@ -17,7 +17,8 @@ def main():
     
     print(rdf.tail())
     print("\n Summary")
-    print("Avg 1 Day Move: ", rdf["oneDayMovePct"].mean())
+    print(f"Avg 1 Day Move: {rdf['oneDayMovePct'].mean() * 100:.2f}%")
+
     
     if idct:
         print("Next expiry:", idct["expiry"])
