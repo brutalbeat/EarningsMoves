@@ -21,4 +21,3 @@ def timelineMoves(df, implied, out="timeline.png"):
     plt.ylabel("Absolute Move %")
     plt.savefig(out)
     plt.close()
-    
