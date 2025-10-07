@@ -1,6 +1,8 @@
 # main file
 
 import argparse
+import pandas as pd
+
 from earnings import getEarningsDates, realizedMoves
 from implied import currentImpliedMove
 from plots import histogramRealized, timelineMoves
@@ -13,11 +15,21 @@ def main():
     
     edates = getEarningsDates(args.ticker, args.events)
     rdf = realizedMoves(args.ticker, edates)
-    idct = currentImpliedMove(args.ticker, edates[-1]) if edates else None
+
+    next_event = None
+    if edates:
+        today = pd.Timestamp.today().normalize()
+        next_event = next((d for d in edates if d >= today), edates[-1]) # d must be later than today for future earnings call
+
+    idct = currentImpliedMove(args.ticker, next_event) if next_event else None
     
     print(rdf.tail())
-    print("\n Summary")
-    print(f"Avg 1 Day Move: {rdf['oneDayMovePct'].mean() * 100:.2f}%")
+    print("\nSummary")
+    avg_move = rdf["oneDayMovePct"].mean() if not rdf.empty else None
+    if avg_move is not None and pd.notna(avg_move):
+        print("Avg 1 Day Move:", f"{avg_move:.2%}")
+    else:
+        print("Avg 1 Day Move: n/a")
 
     
     if idct:

@@ -9,7 +9,11 @@ def getEarningsDates(symbol, limit):
     df = t.get_earnings_dates(limit)
     if df is None or df.empty:
         return []
-    return sorted(df.index.tz_localize(None).to_list())
+    dates = sorted(df.index.tz_localize(None).to_list())
+    if limit:
+        # keep only the most recent `limit` earnings dates so downstream stats honor --events
+        return dates[-limit:]
+    return dates
 
 # this function calculates realized % moves of prices around the earnings dates
 def realizedMoves(symbol, earningsDates, preDays=1, postDays=1):
