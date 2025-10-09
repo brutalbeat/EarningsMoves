@@ -25,7 +25,7 @@ def main():
     
     print(rdf.tail())
     print("\nSummary")
-    avg_move = rdf["oneDayMovePct"].mean() if not rdf.empty else None
+    avg_move = (rdf["oneDayMovePct"].mean())/100 if not rdf.empty else None
     if avg_move is not None and pd.notna(avg_move):
         print("Avg 1 Day Move:", f"{avg_move:.2%}")
     else:

@@ -42,8 +42,8 @@ def realizedMoves(symbol, earningsDates, preDays=1, postDays=1):
 
         rows.append({
             "event_date": T.date(),
-            "gapMovePct": abs((ot - ctm1) / ctm1),
-            "oneDayMovePct": abs((ctp1 - ctm1) / ctm1),
+            "gapMovePct": 100*abs((ot - ctm1) / ctm1),
+            "oneDayMovePct": 100*abs((ctp1 - ctm1) / ctm1),
         })
     
     return pd.DataFrame(rows, columns=["event_date", "gapMovePct", "oneDayMovePct"])

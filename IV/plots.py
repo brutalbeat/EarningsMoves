@@ -10,7 +10,7 @@ def histogramRealized(df, implied, out="hist.png"):
     if implied is not None:
         plt.axvline(implied, ls="--", c="red")
     plt.title("Post Earnings 1-Day Moves")
-    plt.xlabel("Absolute Move %")
+    plt.xlabel("Absolute Move")
     plt.savefig(out)
     plt.close()
     
@@ -22,6 +22,6 @@ def timelineMoves(df, implied, out="timeline.png"):
     if implied is not None:
         plt.axhline(implied, ls="--", c="red")
     plt.title("Post Earnings Moves Over Time")
-    plt.ylabel("Absolute Move %")
+    plt.ylabel("Absolute Move")
     plt.savefig(out)
     plt.close()
