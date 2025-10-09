@@ -1,4 +1,6 @@
-# file for plotting data
+# file for plotting data, we will make 2 charts here for each ticker, one shows historical post earnings one day move percentage frequencies 
+# and the other will show move percentage and earnings dates
+
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -12,7 +14,7 @@ def histogramRealized(df, implied, out="hist.png"):
     plt.savefig(out)
     plt.close()
     
-    
+
 def timelineMoves(df, implied, out="timeline.png"):
     plt.figure()
     s = df.set_index("event_date")["oneDayMovePct"]

@@ -10,7 +10,7 @@ def currentImpliedMove(symbol, earningsDate):
     if not expiries:
         return None
     expiries.sort()
-    ed = pd.Timestamp(earningsDate).tz_localize(None)
+    ed = pd.Timestamp(earningsDate).tz_localize(None) # localize timezone to eliminate potential time zone issues 
     expiry = next((e for e in expiries if e>=ed), expiries[-1])
     
     period = "1d"
@@ -38,7 +38,7 @@ def currentImpliedMove(symbol, earningsDate):
     
     T = daysTilExpiry/365.0
     
-    impliedMovePct = atmIV*math.sqrt(T) # from Black-Scholes
+    impliedMovePct = atmIV*math.sqrt(T) # scale factor from Black-Scholes
     
     return {
         "expiry": expiry.date(),

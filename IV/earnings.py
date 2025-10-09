@@ -11,7 +11,7 @@ def getEarningsDates(symbol, limit):
         return []
     dates = sorted(df.index.tz_localize(None).to_list())
     if limit:
-        # keep only the most recent `limit` earnings dates so downstream stats honor --events
+        # keep only the most recent `limit` earnings dates
         return dates[-limit:]
     return dates
 
@@ -36,14 +36,14 @@ def realizedMoves(symbol, earningsDates, preDays=1, postDays=1):
         T = history.index[iT]
         Tp1 = history.index[iT + postDays]
 
-        c_tm1 = history.loc[Tm1, "Close"]
-        o_t = history.loc[T, "Open"]
-        c_tp1 = history.loc[Tp1, "Close"]
+        ctm1 = history.loc[Tm1, "Close"]
+        ot = history.loc[T, "Open"]
+        ctp1 = history.loc[Tp1, "Close"]
 
         rows.append({
             "event_date": T.date(),
-            "gapMovePct": abs((o_t - c_tm1) / c_tm1),
-            "oneDayMovePct": abs((c_tp1 - c_tm1) / c_tm1),
+            "gapMovePct": abs((ot - ctm1) / ctm1),
+            "oneDayMovePct": abs((ctp1 - ctm1) / ctm1),
         })
     
     return pd.DataFrame(rows, columns=["event_date", "gapMovePct", "oneDayMovePct"])
