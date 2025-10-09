@@ -1,4 +1,4 @@
-# EarningsMoveCalc
+# EarningsMoves
 
 Python CLI tool for sanity-checking an upcoming earnings move: pull the most recent earnings reactions, compare their realized 1-day moves to what the options market is implying today, and plot the results visually.
 
